@@ -41,3 +41,12 @@ version = { source = "scm" }
 [tool.coverage.run]
 branch = true
 source = ["gbp_purge"]
+
+[tool.mypy]
+plugins =["mypy_django_plugin.main"]
+files = ["src"]
+mypy_path = ["tests", "stubs"]
+strict = true
+
+[tool.django-stubs]
+django_settings_module = "gbp_testkit.settings"
