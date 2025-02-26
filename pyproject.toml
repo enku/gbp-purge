@@ -38,3 +38,6 @@ skip-magic-trailing-comma = true
 distribution = true
 version = { source = "scm" }
 
+[tool.coverage.run]
+branch = true
+source = ["gbp_purge"]
