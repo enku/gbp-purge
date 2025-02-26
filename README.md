@@ -68,7 +68,8 @@ each" scenarios if there are more than one then it prefers the most recent.
 For example in the "one for each day of the past week" scenario, if there is a
 Thursday build and a Friday build it will keep the Friday build.
 
-This is the same method I use for my backup script.
+This is the same method I use for my [backup](https://github.com/enku/backup)
+script.
 
 Depending how many machines you have, how often they are build and how often
 builds build new packages this will resemble something like a long tail over
