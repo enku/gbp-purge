@@ -5,7 +5,7 @@ description = "Purge old builds from Gentoo Build Publisher"
 authors = [
     {name = "Albert Hopkins", email = "marduk@letterboxes.org"},
 ]
-dependencies = ["gentoo-build-publisher>=2.3.0"]
+dependencies = ["gentoo-build-publisher>=2.4.0rc1"]
 requires-python = ">=3.11"
 readme = "README.md"
 license = {text = "GPL3+"}
