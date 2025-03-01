@@ -79,4 +79,4 @@ time looks like this
 ![screenshot](https://raw.githubusercontent.com/enku/screenshots/refs/heads/master/gbp-purge/builds-over-time.png)
 
 Perhaps in the future I will add the capability of choosing different purge
-strategies and add configurationt to decide which strategy to use.
+strategies and add configuration to decide which strategy to use.
