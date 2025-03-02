@@ -10,8 +10,8 @@ requires-python = ">=3.11"
 readme = "README.md"
 license = {text = "GPL3+"}
 
-[project.entry-points."gentoo_build_publisher.apps"]
-gbp_purge = "gbp_purge:APP"
+[project.entry-points."gentoo_build_publisher.plugins"]
+gbp_purge = "gbp_purge:plugin"
 
 [build-system]
 requires = ["pdm-backend"]
