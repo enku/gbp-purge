@@ -32,7 +32,7 @@ The system starts off by listening for "pull" events from Gentoo Build
 Publisher. Whenever a build is pulled, a worker task is created to purge
 builds belonging to the same machine as the build that was pulled.
 
-In my (rq) logs it looks something like this:
+In my ([rq](https://python-rq.org/)) logs it looks something like this:
 
 ```
 21:01:25 gbp: gentoo_build_publisher.worker.tasks.pull_build('postgres.272', note=None, tags=None) (e1dec681-b392-4314-b7b7-7bff953f3acc)
