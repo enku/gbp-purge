@@ -32,21 +32,20 @@ The system starts off by listening for "pull" events from Gentoo Build
 Publisher. Whenever a build is pulled, a worker task is created to purge
 builds belonging to the same machine as the build that was pulled.
 
-In my ([rq](https://python-rq.org/)) logs it looks something like this:
+In my ([rq](https://python-rq.org/)) logs it looks something like this
+(summarized):
 
 ```
-21:01:25 gbp: gentoo_build_publisher.worker.tasks.pull_build('postgres.272', note=None, tags=None) (e1dec681-b392-4314-b7b7-7bff953f3acc)
-21:01:40 Successfully completed gentoo_build_publisher.worker.tasks.pull_build('postgres.272', note=None, tags=None) job in 0:00:14.576645s on worker 57fa006e686f418787083030431476b4
-21:01:40 gbp: Job OK (e1dec681-b392-4314-b7b7-7bff953f3acc)
-21:01:40 gbp: gbp_fl.worker.tasks.index_packages('postgres', '272') (7dcf1f1b-91e6-4c71-8d0f-a5659cf9c634)
-21:01:52 Successfully completed gbp_fl.worker.tasks.index_packages('postgres', '272') job in 0:00:11.676547s on worker 57fa006e686f418787083030431476b4
-21:01:52 gbp: Job OK (7dcf1f1b-91e6-4c71-8d0f-a5659cf9c634)
-21:01:52 gbp: gbp_purge.worker.tasks.purge_machine('postgres') (d3349ad8-2e5e-4ed2-9b3b-56d5aebf09aa)
-21:01:54 Successfully completed gbp_purge.worker.tasks.purge_machine('postgres') job in 0:00:02.709775s on worker 57fa006e686f418787083030431476b4
-21:01:54 gbp: Job OK (d3349ad8-2e5e-4ed2-9b3b-56d5aebf09aa)
-21:01:54 gbp: gbp_fl.worker.tasks.delete_from_build('postgres', '270') (48abe652-1993-456a-a1aa-609faeb5d5c1)
-21:01:54 Successfully completed gbp_fl.worker.tasks.delete_from_build('postgres', '270') job in 0:00:00.123885s on worker 57fa006e686f418787083030431476b4
-21:01:54 gbp: Job OK (48abe652-1993-456a-a1aa-609faeb5d5c1)
+06:51:42 gbp: gentoo_build_publisher.worker.tasks.pull_build('arm64-base.822', note=None, tags=None) (5ae68cf6-3eb0-4e40-b6ee-f99ba049fe2d)
+06:51:55 Successfully completed gentoo_build_publisher.worker.tasks.pull_build('arm64-base.822', note=None, tags=None) job in 0:00:13.068159s on worker fd2c3f812a604660974e6ccaaa093b3f
+06:51:55 gbp: gbp_purge.worker.tasks.purge_machine('arm64-base') (a157b907-7070-40b4-91b8-785e70056139)
+06:52:05 Successfully completed gbp_purge.worker.tasks.purge_machine('arm64-base') job in 0:00:10.031353s on worker fd2c3f812a604660974e6ccaaa093b3f
+06:52:05 gbp: gbp_fl.worker.tasks.index_build('arm64-base', '822') (22581b06-3a37-49cd-bd39-4484ace4428e)
+06:52:18 Successfully completed gbp_fl.worker.tasks.index_build('arm64-base', '822') job in 0:00:12.643137s on worker fd2c3f812a604660974e6ccaaa093b3f
+06:52:18 gbp: gbp_fl.worker.tasks.deindex_build('arm64-base', '523') (b304d865-57a6-47cd-a1bf-d6a639328468)
+06:52:18 Successfully completed gbp_fl.worker.tasks.deindex_build('arm64-base', '523') job in 0:00:00.085653s on worker fd2c3f812a604660974e6ccaaa093b3f
+06:52:18 gbp: gbp_fl.worker.tasks.deindex_build('arm64-base', '814') (b04331b4-21c3-4219-b420-b819287a11bc)
+06:52:18 Successfully completed gbp_fl.worker.tasks.deindex_build('arm64-base', '814') job in 0:00:00.058608s on worker fd2c3f812a604660974e6ccaaa093b3f
 ```
 
 ### Purge strategy
