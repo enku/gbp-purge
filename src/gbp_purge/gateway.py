@@ -29,7 +29,7 @@ class GBPGateway:
 
     def purge(self, machine: str) -> None:
         """Purge old builds for machine"""
-        from gentoo_build_publisher import publisher
+        from gentoo_build_publisher import publisher, worker
         from gentoo_build_publisher.worker.tasks import delete_build
 
         logger.info("Purging builds for %s", machine)
@@ -39,7 +39,7 @@ class GBPGateway:
 
         for record in purger.purge():
             if not (record.keep or publisher.storage.get_tags(record)):
-                delete_build(str(record))
+                worker.run(delete_build, str(record))
 
 
 def _purge_key(build_record: BuildRecord) -> dt.datetime:
