@@ -36,16 +36,20 @@ In my ([rq](https://python-rq.org/)) logs it looks something like this
 (summarized):
 
 ```
-06:51:42 gbp: gentoo_build_publisher.worker.tasks.pull_build('arm64-base.822', note=None, tags=None) (5ae68cf6-3eb0-4e40-b6ee-f99ba049fe2d)
-06:51:55 Successfully completed gentoo_build_publisher.worker.tasks.pull_build('arm64-base.822', note=None, tags=None) job in 0:00:13.068159s on worker fd2c3f812a604660974e6ccaaa093b3f
-06:51:55 gbp: gbp_purge.worker.tasks.purge_machine('arm64-base') (a157b907-7070-40b4-91b8-785e70056139)
-06:52:05 Successfully completed gbp_purge.worker.tasks.purge_machine('arm64-base') job in 0:00:10.031353s on worker fd2c3f812a604660974e6ccaaa093b3f
-06:52:05 gbp: gbp_fl.worker.tasks.index_build('arm64-base', '822') (22581b06-3a37-49cd-bd39-4484ace4428e)
-06:52:18 Successfully completed gbp_fl.worker.tasks.index_build('arm64-base', '822') job in 0:00:12.643137s on worker fd2c3f812a604660974e6ccaaa093b3f
-06:52:18 gbp: gbp_fl.worker.tasks.deindex_build('arm64-base', '523') (b304d865-57a6-47cd-a1bf-d6a639328468)
-06:52:18 Successfully completed gbp_fl.worker.tasks.deindex_build('arm64-base', '523') job in 0:00:00.085653s on worker fd2c3f812a604660974e6ccaaa093b3f
-06:52:18 gbp: gbp_fl.worker.tasks.deindex_build('arm64-base', '814') (b04331b4-21c3-4219-b420-b819287a11bc)
-06:52:18 Successfully completed gbp_fl.worker.tasks.deindex_build('arm64-base', '814') job in 0:00:00.058608s on worker fd2c3f812a604660974e6ccaaa093b3f
+09:05:19 gbp: gentoo_build_publisher.worker.tasks.pull_build('web.2815', note=None, tags=None) (fba40994-bbfb-4aef-be8f-5adbc1dd3d5e)
+09:05:35 Successfully completed gentoo_build_publisher.worker.tasks.pull_build('web.2815', note=None, tags=None) job in 0:00:16.334798s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:35 gbp: gbp_purge.worker.tasks.purge_machine('web') (69b9f4e6-d4bb-4c26-af24-95a366ede59a)
+09:05:35 Successfully completed gbp_purge.worker.tasks.purge_machine('web') job in 0:00:00.012854s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:36 gbp: gbp_fl.worker.tasks.index_build('web', '2815') (16978e09-fb3d-40e6-bc20-70735744b546)
+09:05:51 Successfully completed gbp_fl.worker.tasks.index_build('web', '2815') job in 0:00:14.332937s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:51 gbp: gentoo_build_publisher.worker.tasks.delete_build('web.2795') (fb01267d-ed5a-4ca9-a483-917f980bd2f5)
+09:05:53 Successfully completed gentoo_build_publisher.worker.tasks.delete_build('web.2795') job in 0:00:02.805851s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:53 gbp: gentoo_build_publisher.worker.tasks.delete_build('web.2811') (a81e42ca-9914-446d-a6f0-1be0dae25234)
+09:05:57 Successfully completed gentoo_build_publisher.worker.tasks.delete_build('web.2811') job in 0:00:03.305191s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:57 gbp: gbp_fl.worker.tasks.deindex_build('web', '2795') (62c9f6ff-ce70-476e-a582-310b0bfbdfcf)
+09:05:57 Successfully completed gbp_fl.worker.tasks.deindex_build('web', '2795') job in 0:00:00.059129s on worker bb259ab3c5d14539940c50b35ffb624e
+09:05:57 gbp: gbp_fl.worker.tasks.deindex_build('web', '2811') (0303373e-8e17-49a6-a3b7-38b076b89cbb)
+09:05:57 Successfully completed gbp_fl.worker.tasks.deindex_build('web', '2811') job in 0:00:00.144880s on worker bb259ab3c5d14539940c50b35ffb624e
 ```
 
 ### Purge strategy
