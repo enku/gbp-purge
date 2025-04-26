@@ -9,5 +9,5 @@ plugin = {
     "name": "gbp-purge",
     "version": __version__,
     "description": "A plugin for purging old builds",
-    "app": "gbp_purge.apps.GBPPurgeConfig",
+    "app": "gbp_purge.django.gbp_purge.apps.GBPPurgeConfig",
 }

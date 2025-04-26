@@ -8,7 +8,7 @@ from django.apps import AppConfig
 class GBPPurgeConfig(AppConfig):
     """AppConfig for gbp-purge"""
 
-    name = "gbp_purge"
+    name = "gbp_purge.django.gbp_purge"
     verbose_name = "Gentoo Build Publisher purge plugin"
     default_auto_field = "django.db.models.BigAutoField"
 
