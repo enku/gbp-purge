@@ -33,9 +33,8 @@ class GBPGateway:
         from gentoo_build_publisher.worker.tasks import delete_build
 
         logger.info("Purging builds for %s", machine)
-        purger = Purger(
-            publisher.repo.build_records.for_machine(machine), key=_purge_key
-        )
+        build_records = publisher.repo.build_records
+        purger = Purger(build_records.for_machine(machine), key=_purge_key)
 
         for record in purger.purge():
             if not (record.keep or publisher.storage.get_tags(record)):
