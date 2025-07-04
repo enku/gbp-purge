@@ -3,14 +3,23 @@
 import datetime as dt
 from unittest import TestCase
 
+import gbp_testkit.fixtures as testkit
 from gentoo_build_publisher.records import BuildRecord
 from unittest_fixtures import Fixtures, given, where
+
+from . import fixtures as tf
 
 # pylint: disable=missing-docstring
 time = dt.datetime.fromisoformat
 
 
-@given("environ", "now", "publisher", old_build="build", new_build="build")
+@given(
+    testkit.environ,
+    tf.now,
+    testkit.publisher,
+    old_build=testkit.build,
+    new_build=testkit.build,
+)
 @where(
     now=time("2025-02-25 07:00:00"), environ={"BUILD_PUBLISHER_WORKER_BACKEND": "sync"}
 )

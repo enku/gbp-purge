@@ -2,6 +2,7 @@
 import datetime as dt
 from unittest import TestCase
 
+import gbp_testkit.fixtures as testkit
 from gbp_testkit.factories import BuildFactory
 from gentoo_build_publisher.types import Content
 from unittest_fixtures import Fixtures, given
@@ -9,7 +10,7 @@ from unittest_fixtures import Fixtures, given
 from gbp_purge.gateway import GBPGateway
 
 
-@given("build", "publisher")
+@given(testkit.build, testkit.publisher)
 class PurgeTests(TestCase):
     def test_purge_deletes_old_build(self, fixtures: Fixtures) -> None:
         """Should remove purgeable builds"""
