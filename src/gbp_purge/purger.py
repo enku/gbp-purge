@@ -87,7 +87,7 @@ class Purger(Generic[T]):
 
     def one_per_day_last_week(self) -> list[T]:
         """Return one item for every day within the past week."""
-        lst: list[T] = []
+        items: list[T] = []
         last_week = self.end - ONE_WEEK
         last_week = last_week.replace(hour=0, minute=0, second=0, microsecond=0)
 
@@ -95,16 +95,16 @@ class Purger(Generic[T]):
             day = last_week + i * ONE_DAY
             end_of_day = day.replace(hour=23, minute=59, second=59)
             days_items = self.filter_range(self.items, day, end_of_day)
-            lst = lst + sorted(days_items[-1:], key=self.key)
+            items = items + sorted(days_items[-1:], key=self.key)
 
-        return lst
+        return items
 
     def one_per_week_last_month(self) -> list[T]:
         """
         Return a the subset of items comprising of at most one from each week last
         month. If multiple datetimes fit within the week, use the later.
         """
-        lst: list[T] = []
+        items: list[T] = []
         today = self.end.replace(hour=0, minute=0, second=0, microsecond=0)
         last_month = today - ONE_DAY * 31
         start_of_month = last_month.replace(day=1)
@@ -126,17 +126,17 @@ class Purger(Generic[T]):
                 second=59,
             )
             weeks_items = self.filter_range(self.items, start_day, end_of_week)
-            lst = lst + sorted(weeks_items, key=self.key)[-1:]
+            items = items + sorted(weeks_items, key=self.key)[-1:]
             start_day = start_day + ONE_WEEK
 
-        return lst
+        return items
 
     def one_per_month_last_year(self) -> list[T]:
         """
         Return a list of which include a maximum of one for each month of the past year.
         If multiple datetimes fit the criteria for a month, use the latest.
         """
-        lst: list[T] = []
+        items: list[T] = []
         last_year = self.end - ONE_YEAR
         last_year = last_year.replace(hour=0, minute=0, second=0, microsecond=0)
 
@@ -147,26 +147,26 @@ class Purger(Generic[T]):
             )
             end_of_month = self.last_day_of_month(start_of_month)
             months_dts = self.filter_range(self.items, start_of_month, end_of_month)
-            lst = lst + sorted(months_dts, key=self.key)[-1:]
+            items = items + sorted(months_dts, key=self.key)[-1:]
             timestamp = end_of_month + ONE_SECOND
 
-        return lst
+        return items
 
     def one_per_year(self) -> list[T]:
         """
         Return a subset consisting of at most one item per year. If multiple items
         satisfy a given year, use the later.
         """
-        lst = []
+        items = []
         years = []
         revsort = sorted(self.items, key=self.key, reverse=True)
 
         for item in revsort:
             if (year := self.key(item).year) not in years:
-                lst.append(item)
+                items.append(item)
                 years.append(year)
 
-        return lst
+        return items
 
     def past(self) -> list[T]:
         """Return a subset consisting of all items before start time
