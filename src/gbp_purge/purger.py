@@ -95,7 +95,7 @@ class Purger(Generic[T]):
             day = last_week + i * ONE_DAY
             end_of_day = day.replace(hour=23, minute=59, second=59)
             days_items = self.filter_range(self.items, day, end_of_day)
-            items = items + sorted(days_items[-1:], key=self.key)
+            items.extend(sorted(days_items[-1:], key=self.key))
 
         return items
 
@@ -126,7 +126,7 @@ class Purger(Generic[T]):
                 second=59,
             )
             weeks_items = self.filter_range(self.items, start_day, end_of_week)
-            items = items + sorted(weeks_items, key=self.key)[-1:]
+            items.extend(sorted(weeks_items, key=self.key)[-1:])
             start_day = start_day + ONE_WEEK
 
         return items
@@ -147,7 +147,7 @@ class Purger(Generic[T]):
             )
             end_of_month = self.last_day_of_month(start_of_month)
             months_dts = self.filter_range(self.items, start_of_month, end_of_month)
-            items = items + sorted(months_dts, key=self.key)[-1:]
+            items.extend(sorted(months_dts, key=self.key)[-1:])
             timestamp = end_of_month + ONE_SECOND
 
         return items
