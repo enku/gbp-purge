@@ -13,16 +13,10 @@ from . import fixtures as tf
 time = dt.datetime.fromisoformat
 
 
-@given(
-    testkit.environ,
-    tf.now,
-    testkit.publisher,
-    old_build=testkit.build,
-    new_build=testkit.build,
-)
-@where(
-    now=time("2025-02-25 07:00:00"), environ={"BUILD_PUBLISHER_WORKER_BACKEND": "sync"}
-)
+@given(new_build=testkit.build)
+@given(testkit.environ, tf.now, testkit.publisher, old_build=testkit.build)
+@where(now=time("2025-02-25 07:00:00"))
+@where(environ={"BUILD_PUBLISHER_WORKER_BACKEND": "sync"})
 class SignalsTests(TestCase):
     def test(self, fixtures: Fixtures) -> None:
         publisher = fixtures.publisher
