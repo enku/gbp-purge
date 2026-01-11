@@ -1,7 +1,5 @@
 """Gateway to the Gentoo Build Publisher"""
 
-from __future__ import annotations
-
 import logging
 from datetime import datetime
 from typing import TYPE_CHECKING, Any, Callable, ParamSpec
@@ -42,7 +40,7 @@ class GBPGateway:
                 self.run_task(delete_build, str(record))
 
 
-def _purge_key(build_record: BuildRecord) -> datetime:
+def _purge_key(build_record: "BuildRecord") -> datetime:
     """Purge key for build records.  Purge on submitted date"""
     submitted = build_record.submitted or EPOCH
 
