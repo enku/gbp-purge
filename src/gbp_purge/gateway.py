@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import datetime as dt
 import logging
+from datetime import datetime
 from typing import TYPE_CHECKING, Any, Callable, ParamSpec
 
 from gbp_purge.purger import Purger
@@ -11,8 +11,9 @@ from gbp_purge.purger import Purger
 if TYPE_CHECKING:
     from gentoo_build_publisher.records import BuildRecord  # pragma nocover
 
-logger = logging.getLogger(__name__)
+EPOCH = datetime.fromtimestamp(0)
 P = ParamSpec("P")
+logger = logging.getLogger(__name__)
 
 
 class GBPGateway:
@@ -41,8 +42,8 @@ class GBPGateway:
                 self.run_task(delete_build, str(record))
 
 
-def _purge_key(build_record: BuildRecord) -> dt.datetime:
+def _purge_key(build_record: BuildRecord) -> datetime:
     """Purge key for build records.  Purge on submitted date"""
-    submitted = build_record.submitted or dt.datetime.fromtimestamp(0)
+    submitted = build_record.submitted or EPOCH
 
     return submitted.replace(tzinfo=None)
