@@ -10,4 +10,5 @@ plugin = {
     "version": __version__,
     "description": "A plugin for purging old builds",
     "app": "gbp_purge.django.gbp_purge.apps.GBPPurgeConfig",
+    "link": "https://github.com/enku/gbp-purge",
 }
